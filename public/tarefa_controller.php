@@ -1,7 +1,6 @@
-<?php 
+<?php
 
-    require './private/tarefa_controller.php';
-
-
+    require "../private/tarefa_controller.php";
+    
 
 ?>
