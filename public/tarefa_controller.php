@@ -1,6 +1,6 @@
 <?php
 
-    require "../private/tarefa_controller.php";
+    require_once "../private/tarefa_controller.php";
     
 
 ?>
