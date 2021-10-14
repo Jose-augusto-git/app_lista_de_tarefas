@@ -1,3 +1,13 @@
+<?php 
+	$acao = 'recuperarTarefasPendentes';
+	require 'tarefa_controller.php';
+	/*
+	echo '<pre>';
+	print_r($tarefas);
+	echo '</pre>';
+	*/
+
+?>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -19,18 +29,12 @@
 			</div>
 		</nav>
 
-		<? if( isset($_GET['inclusao']) && $_GET['inclusao'] == 1){ ?>
-		<div class="bg-success pt-2 text-white d-flex justify-content-center">
-			<h5>Tarefa inserida com sucesso!</h5>
-		</div>
-		<? }?>
-
 		<div class="container app">
 			<div class="row">
 				<div class="col-md-3 menu">
 					<ul class="list-group">
-						<li class="list-group-item"><a href="../public/index.php">Tarefas pendentes</a></li>
-						<li class="list-group-item active"><a href="#">Nova tarefa</a></li>
+						<li class="list-group-item active"><a href="#">Tarefas pendentes</a></li>
+						<li class="list-group-item"><a href="../public/nova_tarefa.php">Nova tarefa</a></li>
 						<li class="list-group-item"><a href="../public/todas_tarefas.php">Todas tarefas</a></li>
 					</ul>
 				</div>
@@ -39,22 +43,41 @@
 					<div class="container pagina">
 						<div class="row">
 							<div class="col">
-								<h4>Nova tarefa</h4>
+								<h4>Tarefas pendentes</h4>
 								<hr />
 
-								<form method="POST" action="tarefa_controller.php?acao=inserir">
-									<div class="form-group">
-										<label>Descrição da tarefa:</label>
-										<input type="text" class="form-control" placeholder="Exemplo: Lavar o carro" name="tarefa">
+								<? foreach($tarefas as $indice => $tarefa){?>
+
+									<div class="row mb-3 d-flex align-items-center tarefa">
+										<div class="col-sm-9" id="tarefa_<?= $tarefa->id ?>"> 
+
+											<?= $tarefa->tarefa ?>
+
+										</div>
+										<div class="col-sm-3 mt-2 d-flex justify-content-between">
+											<i class="fas fa-trash-alt fa-lg text-danger" 
+											onclick="remover(<?= $tarefa->id ?>)"></i>
+
+											<i class="fas fa-edit fa-lg text-info" 
+											onclick="editar(<?= $tarefa->id ?>, '<?= $tarefa->tarefa ?>')"></i>
+
+											<i class="fas fa-check-square fa-lg text-success"
+											onclick="marcarRealizada(<?= $tarefa->id ?>)"></i>
+
+											
+
+										</div>
 									</div>
 
-									<button class="btn btn-success">Cadastrar</button>
-								</form>
+								<? } ?>
+
+								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="../js/editar_index.js"></script>
 	</body>
 </html>

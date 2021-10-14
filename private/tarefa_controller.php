@@ -6,7 +6,7 @@
 
     $acao = isset ($_GET['acao']) ? $_GET['acao'] : $acao;
 
-    
+    //echo $acao;
 
     if($acao == 'inserir'){
         $tarefa = new Tarefa();
@@ -18,6 +18,8 @@
         $tarefaService->inserir();
 
         header('Location: nova_tarefa.php?inclusao=1');
+        
+
     }else if($acao == 'recuperar'){
 
         $tarefa = new Tarefa();
@@ -37,8 +39,15 @@
 
         //insancia de tarefaService
         $tarefaService = new TarefaService($conexao, $tarefa);
+
         if($tarefaService->atualizar()){
-            header('location: todas_tarefas.php');
+
+            if(isset($_GET['pag']) && $_GET['pag'] == 'index'){
+                header('location: ../public/index.php');
+            }else{
+                header('location: todas_tarefas.php');
+            }
+           
         }
 
     }else if($acao == 'remover'){
@@ -51,7 +60,42 @@
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefaService->remover();
 
-        header('location: todas_tarefas.php');
+        if(isset($_GET['pag']) && $_GET['pag'] == 'index'){
+                header('location: ../public/index.php');
+        }else{
+                header('location: todas_tarefas.php');
+        }
+            
+        
 
+
+    }else if($acao == 'marcarRealizada'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_GET['id'])
+                ->__set('id_status', 2);
+
+        $conexao = new Conexao();
+
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService->marcarRealizada();
+
+        if(isset($_GET['pag']) && $_GET['pag'] == 'index'){
+            header('location: ../public/index.php');
+        }else{
+            header('location: todas_tarefas.php');
+        }
+        
+        
+
+
+    }else if($acao == 'recuperarTarefasPendentes'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('id_status', 1);
+
+        $conexao = new Conexao();
+
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefas = $tarefaService->recuperarTarefasPendentes();
     }
+    
 ?>

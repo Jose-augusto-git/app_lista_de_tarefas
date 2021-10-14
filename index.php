@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -12,7 +13,7 @@
 	<body>
 		<nav class="navbar navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="index.php">
 					<img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
 					App Lista Tarefas
 				</a>
@@ -23,41 +24,26 @@
 			<div class="row">
 				<div class="col-md-3 menu">
 					<ul class="list-group">
-						<li class="list-group-item active"><a href="#">Tarefas pendentes</a></li>
+						<li class="list-group-item"><a href="public/index.php">Tarefas pendentes</a></li>
 						<li class="list-group-item"><a href="public/nova_tarefa.php">Nova tarefa</a></li>
 						<li class="list-group-item"><a href="public/todas_tarefas.php">Todas tarefas</a></li>
 					</ul>
 				</div>
 
-				<div class="col-md-9">
-					<div class="container pagina">
-						<div class="row">
-							<div class="col">
-								<h4>Tarefas pendentes</h4>
-								<hr />
+				<div class="col">
+					<div class="container" >
+					<div class="card mb-3">
 
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Lavar o carro</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
-
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Passear com o cachorro</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
-							</div>
+						<div class="card">
+						<div class="card-body">
+							<h4 class="card-title text-center">App Lista de Tarefas</h4>
+						</div>
+						<img class="card-img-bottom" src="img/146.jpg" alt="Imagem de capa do card">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="../js/editar.js"></script>
 	</body>
 </html>
